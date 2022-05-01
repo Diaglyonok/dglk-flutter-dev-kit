@@ -22,7 +22,7 @@ mixin Reactor<LST, ResponseType> {
   void provideDataToListeners(ResponseType data, {LST? type}) {
     for (var listener in listeners) {
       if (listener.type == type || type == null) {
-        listener.typedEmit(data);
+        listener.typedEmit(data, type);
       }
     }
   }

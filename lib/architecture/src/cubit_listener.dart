@@ -18,16 +18,15 @@ abstract class CubitListener<T, D, S> extends Cubit<S> {
     return super.close();
   }
 
-  // ignore: avoid_annotating_with_dynamic
-  void typedEmit(dynamic data) {
+  void typedEmit(dynamic data, T? type) {
     if (data == null || data is D) {
-      emitOnResponse(data);
+      emitOnResponse(data, type);
     } else {
       log(data.runtimeType.toString());
     }
   }
 
-  void emitOnResponse(D data);
+  void emitOnResponse(D response, T? type);
 
   void setLoading();
 }
