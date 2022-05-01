@@ -1,6 +1,6 @@
 import './cubit_listener.dart';
 
-mixin Reactor<LST> {
+mixin Reactor<LST, ResponseType> {
   final List<CubitListener> listeners = [];
 
   void addListener(CubitListener listener) {
@@ -19,7 +19,7 @@ mixin Reactor<LST> {
     }
   }
 
-  void provideDataToListeners(dynamic data, {LST? type}) {
+  void provideDataToListeners(ResponseType data, {LST? type}) {
     for (var listener in listeners) {
       if (listener.type == type || type == null) {
         listener.typedEmit(data);

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class BottomSheetRoute extends ModalRoute {
   BottomSheetRoute({
-    required this.vsync,
     this.child,
     this.bottomSheetController,
     this.color,
@@ -14,7 +13,6 @@ class BottomSheetRoute extends ModalRoute {
   final BottomSheetController? bottomSheetController;
   final Color? color;
   final bool? showGrip;
-  final TickerProvider vsync;
 
   @override
   Future<RoutePopDisposition> willPop() {

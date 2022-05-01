@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import './reactor.dart';
@@ -20,6 +22,8 @@ abstract class CubitListener<T, D, S> extends Cubit<S> {
   void typedEmit(dynamic data) {
     if (data == null || data is D) {
       emitOnResponse(data);
+    } else {
+      log(data.runtimeType.toString());
     }
   }
 
