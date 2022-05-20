@@ -6,12 +6,14 @@ class BottomSheetRoute extends ModalRoute {
     this.bottomSheetController,
     this.color,
     this.showGrip,
+    this.gripColor,
   });
   bool isPopped = false;
 
   final Widget? child;
   final BottomSheetController? bottomSheetController;
   final Color? color;
+  final Color? gripColor;
   final bool? showGrip;
 
   @override
@@ -114,7 +116,7 @@ class BottomSheetRoute extends ModalRoute {
                   child: Container(
                     width: 40,
                     height: 4,
-                    color: Theme.of(context).colorScheme.background,
+                    color: gripColor ?? Theme.of(context).colorScheme.onBackground.withOpacity(0.4),
                   ),
                 ),
               ),
