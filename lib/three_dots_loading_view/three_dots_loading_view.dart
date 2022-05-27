@@ -38,6 +38,12 @@ class _ThreeDotsLoadingViewState extends State<ThreeDotsLoadingView> with Ticker
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
         animation: animation,
