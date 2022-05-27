@@ -28,5 +28,5 @@ abstract class CubitListener<T, D, S> extends Cubit<S> {
 
   void emitOnResponse(D response, T? type);
 
-  void setLoading();
+  void setLoading({D? data});
 }

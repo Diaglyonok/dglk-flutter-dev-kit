@@ -11,10 +11,10 @@ mixin Reactor<LST, ResponseType> {
     listeners.remove(listener);
   }
 
-  void setLoading({LST? type}) {
+  void setLoading({LST? type, ResponseType? currentData}) {
     for (var listener in listeners) {
       if (listener.type == type || type == null) {
-        listener.setLoading();
+        listener.setLoading(data: currentData);
       }
     }
   }
