@@ -36,8 +36,12 @@ class _ExpandedSectionState extends State<ExpandedSection> with SingleTickerProv
 
   ///Setting up the animation
   void prepareAnimations() {
+    final initValue = widget.expandOnStart ? 1.0 : 0.0;
+
     expandController = AnimationController(
-        vsync: this, duration: widget.duration ?? const Duration(milliseconds: 500));
+        value: initValue,
+        vsync: this,
+        duration: widget.duration ?? const Duration(milliseconds: 500));
     if (!widget.expandOnStart) {
       expandController!.value = widget.expand ? 1.0 : 0.0;
     }
