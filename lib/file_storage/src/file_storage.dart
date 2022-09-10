@@ -170,7 +170,6 @@ class FileStorage {
   ///P.S. file extension without dot. (example: png)
   ///[data] - data can be String or Byte list (List<int>). Any other type will be converted to string. (cannot be null)
   ///
-
   Future<void> deleteLocalFolder({required SaveFileDirType globalDir, String? subDir}) async {
     final path = await localPath;
     var directory = _getDir(globalDir, subDir);
@@ -180,6 +179,36 @@ class FileStorage {
     }
 
     await folder.delete(recursive: true);
+  }
+
+  ///Method creates new file
+  ///[fileName] and [fileExtension] - name and extension of file, that will be stored in local storage,
+  ///P.S. file extension without dot. (example: png)
+  ///
+  Future<File?> createFile({
+    required SaveFileDirType globalDir,
+    String? subDir,
+    required String? name,
+    required String? ext,
+  }) async {
+    if (await checkFileExist(
+      globalDir: globalDir,
+      name: name,
+      fileExtension: ext,
+    )) {
+      return null;
+    }
+
+    try {
+      return _getFileCachedByName(
+        subDirs: _getDir(globalDir, subDir),
+        name: name,
+        fileExtension: ext,
+        create: true,
+      );
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<bool> copyFileTo({
