@@ -50,6 +50,7 @@ class SimpleButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(borderRadius),
           ),
           child: InkWell(
+            borderRadius: BorderRadius.circular(borderRadius),
             onTap: () => callback?.call(),
             child: Center(
               child: child ??
