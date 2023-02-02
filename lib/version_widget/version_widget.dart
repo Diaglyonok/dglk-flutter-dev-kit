@@ -5,7 +5,10 @@ class VersionWidget extends StatefulWidget {
   final String? versionTitleText;
   final TextStyle? textStyle;
 
-  const VersionWidget({Key? key, this.versionTitleText, this.textStyle}) : super(key: key);
+  final TextAlign? textAlign;
+
+  const VersionWidget({Key? key, this.versionTitleText, this.textStyle, this.textAlign})
+      : super(key: key);
 
   @override
   State<VersionWidget> createState() => _VersionWidgetState();
@@ -32,7 +35,8 @@ class _VersionWidgetState extends State<VersionWidget> {
       child: Text(
         packageInfo == null
             ? ''
-            : '${widget.versionTitleText ?? 'Version'}: ${packageInfo!.version}(${packageInfo!.buildNumber})',
+            : '${widget.versionTitleText ?? 'Version'}: ${packageInfo!.version} (${packageInfo!.buildNumber})',
+        textAlign: widget.textAlign,
         style: widget.textStyle ??
             Theme.of(context).textTheme.bodyText2?.copyWith(
                   color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
