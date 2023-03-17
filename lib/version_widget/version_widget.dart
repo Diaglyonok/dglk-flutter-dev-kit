@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+export 'package:package_info_plus/package_info_plus.dart';
+
+class AppVersion {
+  static Future<PackageInfo> getPackageInfo() {
+    return PackageInfo.fromPlatform();
+  }
+}
+
 class VersionWidget extends StatefulWidget {
   final String? versionTitleText;
   final TextStyle? textStyle;
@@ -19,7 +27,7 @@ class _VersionWidgetState extends State<VersionWidget> {
 
   @override
   void initState() {
-    PackageInfo.fromPlatform().then(
+    AppVersion.getPackageInfo().then(
       (value) {
         packageInfo = value;
         setState(() {});
