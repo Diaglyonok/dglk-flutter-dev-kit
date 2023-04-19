@@ -1,6 +1,7 @@
 import './cubit_listener.dart';
+import 'repo_base_response.dart';
 
-mixin Reactor<LST, ResponseType> {
+mixin Reactor<LST, ResponseType extends RepoResponse<LST>> {
   final List<CubitListener> listeners = [];
   final List<void Function(ResponseType)> dataListeners = [];
 
@@ -20,18 +21,18 @@ mixin Reactor<LST, ResponseType> {
     listeners.remove(listener);
   }
 
-  void setLoading({LST? type, ResponseType? currentData}) {
+  void setLoading({required ResponseType currentData}) {
     for (var listener in listeners) {
-      if (listener.type == type || type == null) {
+      if (listener.type == currentData.type || currentData.type == null) {
         listener.setLoading(data: currentData);
       }
     }
   }
 
-  void provideDataToListeners(ResponseType data, {LST? type}) {
+  void provideDataToListeners(ResponseType data) {
     for (var listener in listeners) {
-      if (listener.type == type || type == null) {
-        listener.typedEmit(data, type);
+      if (listener.type == data.type) {
+        listener.typedEmit(data);
       }
     }
 

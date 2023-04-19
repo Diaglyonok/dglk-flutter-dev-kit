@@ -1,10 +1,11 @@
 import 'dart:developer';
 
+import 'package:dglk_flutter_dev_kit/architecture/src/repo_base_response.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import './reactor.dart';
 
-abstract class CubitListener<T, D, S> extends Cubit<S> {
+abstract class CubitListener<T, D extends RepoResponse<T>, S> extends Cubit<S> {
   final Reactor _repository;
   final T type;
 
@@ -18,15 +19,15 @@ abstract class CubitListener<T, D, S> extends Cubit<S> {
     return super.close();
   }
 
-  void typedEmit(dynamic data, T? type) {
-    if (data == null || data is D) {
-      emitOnResponse(data, type);
+  void typedEmit(RepoResponse<T> data) {
+    if (data is D) {
+      emitOnResponse(data);
     } else {
       log(data.runtimeType.toString());
     }
   }
 
-  void emitOnResponse(D response, T? type);
+  void emitOnResponse(D response);
 
   void setLoading({D? data});
 }
