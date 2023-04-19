@@ -29,5 +29,5 @@ abstract class CubitListener<T, D extends RepoResponse<T>, S> extends Cubit<S> {
 
   void emitOnResponse(D response);
 
-  void setLoading({D? data});
+  void setLoading({required D data});
 }
