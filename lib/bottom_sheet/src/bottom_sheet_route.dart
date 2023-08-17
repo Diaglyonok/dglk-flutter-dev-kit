@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BottomSheetRoute extends ModalRoute {
+class BottomSheetRoute<T> extends ModalRoute<T> {
   BottomSheetRoute({
     this.child,
     this.bottomSheetController,
