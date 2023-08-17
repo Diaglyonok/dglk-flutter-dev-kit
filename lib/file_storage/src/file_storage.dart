@@ -296,10 +296,6 @@ class FileStorage {
   }
 
   Future<void> _clearFolder(String dir) async {
-    if (dir == null) {
-      return;
-    }
-
     final path = await localPath;
     var folder = Directory('$path/$dir');
     if (!await folder.exists()) {

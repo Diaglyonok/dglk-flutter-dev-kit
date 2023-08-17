@@ -143,10 +143,10 @@ class OpacityAppBar extends StatefulWidget {
   final Color secondColor;
   final bool onlyShadowOpacity;
 
-  Widget Function(Color?)? leftIconBuilder;
-  Widget Function(Color?)? rightIconBuilder;
+  final Widget Function(Color?)? leftIconBuilder;
+  final Widget Function(Color?)? rightIconBuilder;
 
-  OpacityAppBar({
+  const OpacityAppBar({
     required this.titleBuilder,
     required this.shrinkOffset,
     Key? key,
@@ -159,15 +159,16 @@ class OpacityAppBar extends StatefulWidget {
     this.rightIconBuilder,
     this.leftIconBuilder,
   })  : assert(opacityBorder <= 1.0 && opacityBorder >= 0.0),
-        super(key: key) {
-    leftIconBuilder ??= (color) => Container();
-  }
+        super(key: key);
 
   @override
   _OpacityAppBarState createState() => _OpacityAppBarState();
 }
 
 class _OpacityAppBarState extends State<OpacityAppBar> {
+  Widget Function(Color?) get leftIconBuilder =>
+      widget.leftIconBuilder ?? (color) => const SizedBox();
+
   @override
   Widget build(BuildContext context) {
     final shrinkOffset = widget.shrinkOffset;
@@ -213,13 +214,13 @@ class _OpacityAppBarState extends State<OpacityAppBar> {
               padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
               child: Row(
                 children: <Widget>[
-                  widget.leftIconBuilder!(mainColor),
+                  leftIconBuilder(mainColor),
                   Expanded(child: widget.titleBuilder(mainColor)),
                   widget.rightIconBuilder == null
                       ? IgnorePointer(
                           child: Opacity(
                             opacity: 0.0,
-                            child: widget.leftIconBuilder!(mainColor),
+                            child: leftIconBuilder(mainColor),
                           ),
                         )
                       : widget.rightIconBuilder!(mainColor)
@@ -235,7 +236,7 @@ class _OpacityAppBarState extends State<OpacityAppBar> {
 
 class NoGlowBehaviour extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) {
+  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
     return child;
   }
 }

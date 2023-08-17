@@ -21,9 +21,6 @@ List<Diff> _myersDiff<E>(_DiffArguments<E> args) {
   final List<E> oldList = args.oldList;
   final List<E> newList = args.newList;
 
-  if (oldList == null) throw ArgumentError("oldList is null");
-  if (newList == null) throw ArgumentError("newList is null");
-
   if (oldList == newList) return [];
 
   final oldSize = oldList.length;
