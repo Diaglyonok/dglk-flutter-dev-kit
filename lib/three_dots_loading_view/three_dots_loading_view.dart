@@ -52,7 +52,7 @@ class _ThreeDotsLoadingViewState extends State<ThreeDotsLoadingView> with Ticker
             children: [
               Text(
                 fullText,
-                style: (widget.style ?? Theme.of(context).textTheme.button)!.copyWith(
+                style: (widget.style ?? Theme.of(context).textTheme.labelLarge)!.copyWith(
                   color: Colors.transparent,
                 ),
               ),
@@ -61,7 +61,7 @@ class _ThreeDotsLoadingViewState extends State<ThreeDotsLoadingView> with Ticker
                 style: widget.style ??
                     Theme.of(context)
                         .textTheme
-                        .button!
+                        .labelLarge!
                         .copyWith(color: Theme.of(context).colorScheme.onSecondary),
               ),
             ],

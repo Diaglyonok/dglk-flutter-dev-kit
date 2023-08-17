@@ -58,7 +58,7 @@ class SimpleButton extends StatelessWidget {
                     title,
                     semanticsLabel: title,
                     style: textStyle ??
-                        Theme.of(context).textTheme.button!.copyWith(
+                        Theme.of(context).textTheme.labelLarge!.copyWith(
                               color: Theme.of(context).colorScheme.onSecondary,
                             ),
                   ),
