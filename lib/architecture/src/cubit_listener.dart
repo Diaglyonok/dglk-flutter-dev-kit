@@ -19,9 +19,13 @@ abstract class CubitListener<T, D extends RepoResponse<T>, S> extends Cubit<S> {
     return super.close();
   }
 
-  void typedEmit(RepoResponse<T> data) {
+  void typedEmit(RepoResponse<T> data, {bool isLoading = false}) {
     if (data is D) {
-      emitOnResponse(data);
+      if (isLoading) {
+        setLoading(data: data);
+      } else {
+        emitOnResponse(data);
+      }
     } else {
       log(data.runtimeType.toString());
     }

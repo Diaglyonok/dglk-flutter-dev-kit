@@ -24,7 +24,7 @@ mixin Reactor<LST, ResponseType extends RepoResponse<LST>> {
   void setLoading({required ResponseType currentData}) {
     for (var listener in listeners) {
       if (listener.type == currentData.type || currentData.type == null) {
-        listener.setLoading(data: currentData);
+        listener.typedEmit(currentData, isLoading: true);
       }
     }
   }
