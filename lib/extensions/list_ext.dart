@@ -4,7 +4,7 @@ extension ListExtNullable<E> on List<E>? {
 }
 
 extension ListExtNonNullable<E> on List<E> {
-  List<E>? copy() => map((e) => e).toList();
+  List<E> copy() => map((e) => e).toList();
 
   bool indexValid(int index) {
     if (isNullOrEmpty()) {
