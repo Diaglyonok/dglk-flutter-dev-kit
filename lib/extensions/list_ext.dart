@@ -1,4 +1,4 @@
-extension ListExtNullable<E> on List<E?>? {
+extension ListExtNullable<E> on List<E>? {
   bool isNullOrEmpty() => (this == null) || this!.isEmpty;
   bool isNotNullOrEmpty() => !isNullOrEmpty();
   List<E?>? getSorted<E>([int? Function(E?, E?)? compare]) {
@@ -15,7 +15,7 @@ extension ListExtNullable<E> on List<E?>? {
     return newList;
   }
 
-  List? copy() => this == null ? null : this!.map((e) => e).toList();
+  List<E>? copy() => this == null ? null : this!.map((e) => e).toList();
 
   bool indexValid(int index) {
     if (isNullOrEmpty()) {
