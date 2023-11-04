@@ -18,12 +18,12 @@ extension ListExtNonNullable<E> on List<E> {
     return true;
   }
 
-  List<E> getSorted([int? Function(E, E)? compare]) {
+  List<E> getSorted([int Function(E, E)? compare]) {
     List<E> newList = map((e) => e).toList().cast<E>();
     if (compare == null && E is Comparable) {
       newList.sort();
     } else if (compare != null) {
-      newList.sort(compare as int Function(E?, E?)?);
+      newList.sort(compare);
     }
     return newList;
   }
