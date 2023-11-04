@@ -1,12 +1,12 @@
 extension ListExtNullable<E> on List<E>? {
   bool isNullOrEmpty() => (this == null) || this!.isEmpty;
   bool isNotNullOrEmpty() => !isNullOrEmpty();
-  List<E?>? getSorted<E>([int? Function(E?, E?)? compare]) {
+  List<E>? getSorted<E>([int? Function(E, E)? compare]) {
     if (this == null) {
       return null;
     }
 
-    List<E?> newList = this!.map((e) => e).toList().cast<E>();
+    List<E> newList = this!.map((e) => e).toList().cast<E>();
     if (compare == null && E is Comparable) {
       newList.sort();
     } else if (compare != null) {
