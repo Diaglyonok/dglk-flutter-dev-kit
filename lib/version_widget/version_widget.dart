@@ -15,8 +15,7 @@ class VersionWidget extends StatefulWidget {
 
   final TextAlign? textAlign;
 
-  const VersionWidget({Key? key, this.versionTitleText, this.textStyle, this.textAlign})
-      : super(key: key);
+  const VersionWidget({Key? key, this.versionTitleText, this.textStyle, this.textAlign}) : super(key: key);
 
   @override
   State<VersionWidget> createState() => _VersionWidgetState();
@@ -46,7 +45,7 @@ class _VersionWidgetState extends State<VersionWidget> {
             : '${widget.versionTitleText ?? 'Version'}: ${packageInfo!.version} (${packageInfo!.buildNumber})',
         textAlign: widget.textAlign,
         style: widget.textStyle ??
-            Theme.of(context).textTheme.bodyText2?.copyWith(
+            Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
                 ),
       ),
